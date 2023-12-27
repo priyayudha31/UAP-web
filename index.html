@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>Kode</th>
+        <th>Barang</th>
+        <th>Harga</th>
+      </tr>
+      <tr>
+        <td>001</td>
+        <td>Barang A</td>
+        <td>10000</td>
+      </tr>
+      <tr>
+        <td>002</td>
+        <td>Barang B</td>
+        <td>20000</td>
+      </tr>
+      <tr>
+        <td>003</td>
+        <td>Barang C</td>
+        <td>30000</td>
+      </tr>
+    </table>
+
+    <form>
+      <table>
+        <tr>
+          <td><label for="kode">Masukkan Kode:</label></td>
+          <td><input type="text" id="kode" name="kode" required /></td>
+        </tr>
+        <tr>
+          <td><label for="banyakBarang">Banyaknya Barang:</label></td>
+          <td>
+            <input
+              type="number"
+              id="banyakBarang"
+              name="banyakBarang"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button type="button" onclick="calculateTotal()">Submit</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <script>
+      function calculateTotal() {
+        var kode = document.getElementById("kode").value;
+        var banyakBarang = parseInt(
+          document.getElementById("banyakBarang").value
+        );
+
+        var harga = {
+          "001": 10000,
+          "002": 20000,
+          "003": 30000,
+        };
+
+        var total = harga[kode] * banyakBarang;
+
+        if (!total) {
+          window.alert("Kode barang tidak valid");
+          return;
+        }
+
+        window.alert("Total yang harus dibayar: " + total);
+
+        var uangBayar = parseFloat(
+          window.prompt("Masukkan jumlah uang yang akan dibayarkan:")
+        );
+
+        if (isNaN(uangBayar) || uangBayar < total) {
+          window.alert(
+            "Jumlah uang tidak valid atau kurang dari total yang harus dibayar"
+          );
+          return;
+        }
+
+        var kembalian = uangBayar - total;
+        window.alert("Kembalian: " + kembalian);
+      }
+    </script>
+  </body>
+</html>
